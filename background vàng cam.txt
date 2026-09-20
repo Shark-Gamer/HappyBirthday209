@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Chúc mừng sinh nhật với hiệu ứng đẹp mắt!" />
+    <meta name="keywords" content="sinh nhật, happy birthday, hiệu ứng đẹp" />
+    <title>Chúc Mừng Sinh Nhật</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to top, #ff7e5f, #feb47b);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .container2 {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            animation: gallery 15s linear infinite;
+            cursor: pointer;
+        }
+
+        .container2 span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(calc(var(--i) * 45deg)) translateZ(450px);
+            -webkit-box-reflect: below 2.5px linear-gradient(transparent, rgba(3,3,3,0.2));
+        }
+
+        .container2 span img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 4px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);   
+        }
+
+        .container2 span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            filter: blur(10px);
+            opacity: 0.6;
+            animation: lightEffect 2s infinite;
+        }
+
+        @keyframes gallery {
+            0% {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+            100% {
+                transform: perspective(1000px) rotateY(360deg);
+            }
+        }
+
+        @keyframes lightEffect {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            animation: popupEffect 1s ease forwards;
+        }
+
+        .popup h2 {
+            font-size: 1.8rem;
+            color: #ff6347;
+            margin-bottom: 10px;
+        }
+
+        .popup button {
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .popup button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes popupEffect {
+            from {
+                transform: translate(-50%, -60%) scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .background-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-effect span {
+            position: absolute;
+            display: block;
+            width: 6px;
+            height: 120px;
+            background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.3));
+            animation: comet 2.5s linear infinite;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .background-effect span:nth-child(odd) {
+            background: linear-gradient(to bottom, #ff9a9e, rgba(255, 154, 158, 0.3));
+            box-shadow: 0 0 15px rgba(255, 154, 158, 0.8);
+        }
+
+        .background-effect span:nth-child(even) {
+            background: linear-gradient(to bottom, #fbc2eb, rgba(251, 194, 235, 0.3));
+            box-shadow: 0 0 15px rgba(251, 194, 235, 0.8);
+        }
+
+        @keyframes comet {
+            0% {
+                transform: translateY(-150px) translateX(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(-50vw) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .aurora {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+        }
+
+        .aurora span {
+            position: absolute;
+            display: block;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(144,238,144,0.5) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(100px);
+            animation: auroraMovement 6s linear infinite;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        .aurora span:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+            background: radial-gradient(circle, rgba(173,216,230,0.5) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        .aurora span:nth-child(2) {
+            top: 30%;
+            left: 50%;
+            animation-delay: 1.5s;
+            background: radial-gradient(circle, rgba(255,182,193,0.5) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        .aurora span:nth-child(3) {
+            top: 60%;
+            left: 70%;
+            animation-delay: 3s;
+        }
+
+        @keyframes auroraMovement {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-60%, -40%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .button-icon {
+            margin-top: 10px;
+            color: #ff7e5f;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="container2">
+        <span style="--i:1"><img src="ngocminh1.jpg" alt="Hình 1" /></span>
+        <span style="--i:2"><img src="ngocminh2.jpg" alt="Hình 2" /></span>
+        <span style="--i:3"><img src="ngocminh3.jpg" alt="Hình 3" /></span>
+        <span style="--i:4"><img src="ngocminh4.jpg" alt="Hình 4" /></span>
+        <span style="--i:5"><img src="ngocminh5.jpg" alt="Hình 5" /></span>
+        <span style="--i:6"><img src="minh.n.jpg" alt="Hình 6" /></span>
+        <span style="--i:7"><img src="ngocminh5.jpg" alt="Hình 5" /></span>
+        <span style="--i:8"><img src="minh.n.jpg" alt="Hình 6" /></span>
+    </div>
+    <div class="popup" id="popup">
+        <h2>Chúc mừng sinh nhật!</h2>
+        <p>Hãy nhấn nút để mở món quà bất ngờ!</p>
+        <button onclick="redirect()">Nhấn vào đây</button>
+        <p class="button-icon"><i class="fas fa-gift"></i></p>
+    </div>
+    <div class="background-effect">
+        <!-- Các phần tử hiệu ứng nổi bật -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <script>
+        // Hiển thị popup sau 3 giây
+        setTimeout(() => {
+            document.getElementById('popup').style.display = 'block';
+        }, 3000);
+
+        // Chuyển hướng
+        function redirect() {
+            window.location.href = "surprise.html"; // Đổi đường dẫn đến trang quà tặng
+        }
+
+        // Tạo hiệu ứng nổi bật
+        const comets = document.querySelectorAll('.background-effect span');
+        comets.forEach((comet) => {
+            comet.style.left = `${Math.random() * 100}%`;
+            comet.style.animationDelay = `${Math.random() * 3}s`;
+            comet.style.animationDuration = `${2 + Math.random() * 3}s`;
+        });
+    </script>
+</body>
+</html>
